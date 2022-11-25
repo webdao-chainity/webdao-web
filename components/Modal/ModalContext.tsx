@@ -3,7 +3,6 @@ import React, {createContext, useState, useRef} from 'react';
 import styled, {keyframes} from 'styled-components';
 import {Handler} from './types';
 
-
 const animationVariants: Variants = {
   initial: {transform: 'translateX(0px)'},
   animate: {transform: 'translateX(0px)'},

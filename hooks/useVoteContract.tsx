@@ -2,9 +2,7 @@ import _ from 'lodash';
 import Web3 from 'web3';
 import {VOTE_CONTRACT_ABI, VOTE_CONTRACT_ADDRESS} from '@/constants/env';
 import {useState, useEffect} from 'react';
-import useActiveWeb3React from '@/hooks/useActiveWeb3React';
-import {getContract} from '@/utils/contractHelpers';
-import {getProviderOrSigner} from '@/utils';
+import {useVoting} from '@/hooks/useContract';
 
 export const VOTE_VALUE_ENUM = {
   YES: 1,
@@ -14,11 +12,7 @@ export const VOTE_VALUE_ENUM = {
 const IS_PRIVATE = false;
 
 const useVoteContract = (voteId: string | number, account: string | null | undefined) => {
-  const {library} = useActiveWeb3React();
-  // @ts-ignore
-  const signer = getProviderOrSigner(library, account);
-  const contract = getContract(VOTE_CONTRACT_ABI, VOTE_CONTRACT_ADDRESS, signer);
-  console.log(library, 'dasdsadas', contract);
+  const contract = useVoting(VOTE_CONTRACT_ADDRESS);
   const [data, setData] = useState({});
   const [hasVoted, setHasVoted] = useState(true);
   const connectContract = async () => {
@@ -84,11 +78,25 @@ const useVoteContract = (voteId: string | number, account: string | null | undef
     }
   };
 
+  const handleCreateVoting = (value: any) => {
+    const {description, currency, minVoter, maxVoter, startTime, endTime} = value;
+    return contract.createVoting(
+      voteId,
+      IS_PRIVATE,
+      description,
+      currency,
+      minVoter,
+      maxVoter,
+      startTime,
+      endTime
+    );
+  };
+
   useEffect(() => {
     connectContract();
   }, [voteId, account]);
 
-  return {data, contract, hasVoted, handleVote, handleCancelVote};
+  return {data, contract, hasVoted, handleVote, handleCancelVote, handleCreateVoting};
 };
 
 export default useVoteContract;

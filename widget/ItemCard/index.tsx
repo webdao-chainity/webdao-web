@@ -28,7 +28,7 @@ export const ItemCard = (props: IItemCard) => {
     const startDay = dayjs(_.get(props, 'data.startTime', ''));
     const endDay = dayjs(_.get(props, 'data.endTime', ''));
     if (startDay.isValid()) content = 'From: ' + startDay.format(DAY_FORMAT_DMY);
-    if (endDay.isValid()) content += '  To: ' + startDay.format(DAY_FORMAT_DMY);
+    if (endDay.isValid()) content += '  To: ' + endDay.format(DAY_FORMAT_DMY);
     return <div className={styles.range}>{content}</div>;
   }, [props]);
 
