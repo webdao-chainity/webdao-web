@@ -29,8 +29,8 @@ export const AdminItemCard = (props: IItemCard) => {
   const handleApprove = async () => {
     await handleCreateVoting({
       ...props.data,
-      startTime: new Date(props.data.startTime).getTime(),
-      endTime: new Date(props.data.endTime).getTime(),
+      startTime: Math.floor(new Date(props.data.startTime).getTime() / 1e3),
+      endTime: Math.floor(new Date(props.data.endTime).getTime() / 1e3),
     });
     await updateEventApi(props.data._id, {
       isDraft: false,
