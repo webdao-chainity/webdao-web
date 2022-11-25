@@ -22,3 +22,13 @@ export function getProviderOrSigner(
 ): Web3Provider | JsonRpcSigner {
   return account ? getSigner(library, account) : library;
 }
+
+export const parseIntValue = (value: string | null) => {
+  try{
+    if (value == null) return null
+    return parseInt(value)
+  } catch (e){
+    console.log(e)
+    return null
+  }
+}

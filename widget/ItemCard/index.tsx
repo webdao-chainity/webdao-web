@@ -24,12 +24,16 @@ export const ItemCard = (props: IItemCard) => {
   };
 
   const renderRange = useMemo(() => {
-    let content = '';
+    let startContent = '';
+    let endContent = '';
     const startDay = dayjs(_.get(props, 'data.startTime', ''));
     const endDay = dayjs(_.get(props, 'data.endTime', ''));
-    if (startDay.isValid()) content = 'From: ' + startDay.format(DAY_FORMAT_DMY);
-    if (endDay.isValid()) content += '  To: ' + endDay.format(DAY_FORMAT_DMY);
-    return <div className={styles.range}>{content}</div>;
+    if (startDay.isValid()) startContent = 'From: ' + startDay.format(DAY_FORMAT_DMY);
+    if (endDay.isValid()) endContent ='To: ' + endDay.format(DAY_FORMAT_DMY);
+    return <div className={styles.range}>
+      {startContent}<br/>
+      {endContent}
+    </div>;
   }, [props]);
 
   return (

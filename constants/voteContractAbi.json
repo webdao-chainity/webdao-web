@@ -399,8 +399,13 @@
     "outputs": [
       {
         "internalType": "bool",
-        "name": "",
+        "name": "isVoted",
         "type": "bool"
+      },
+      {
+        "internalType": "uint256",
+        "name": "answerVote",
+        "type": "uint256"
       }
     ],
     "stateMutability": "view",
@@ -427,70 +432,6 @@
     "name": "votingFunction",
     "outputs": [],
     "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "bytes32",
-        "name": "",
-        "type": "bytes32"
-      }
-    ],
-    "name": "votingInfoList",
-    "outputs": [
-      {
-        "internalType": "string",
-        "name": "description",
-        "type": "string"
-      },
-      {
-        "internalType": "address",
-        "name": "currencyAdd",
-        "type": "address"
-      },
-      {
-        "internalType": "uint256",
-        "name": "minVoter",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "maxVoter",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "startTime",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "endTime",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "countYesVoting",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "countNoVoting",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "resultVoting",
-        "type": "uint256"
-      },
-      {
-        "internalType": "bool",
-        "name": "isComplete",
-        "type": "bool"
-      }
-    ],
-    "stateMutability": "view",
     "type": "function"
   }
 ]

@@ -10,8 +10,8 @@ import {ModalProvider} from '@/components/Modal';
 import {Web3ReactProvider} from '@web3-react/core';
 import {getLibrary} from '@/engine/config';
 import useEagerConnect from '@/hooks/useEagerConnect';
-import useAuth from '@/hooks/useAuth';
-import {AuthContext, AuthProvider} from '../../context/auth';
+import {AuthProvider} from '@/context/auth';
+import useToast from "@/hooks/useToast";
 
 interface ILayout {
   className: string;
@@ -63,6 +63,7 @@ const LayoutBody = withTheme(
 
 export const Layout = (props: {children: ReactNode}) => {
   const {themeName, themeData, setTheme} = useTheme();
+  const {toasterComponent} = useToast();
 
   return (
     <div>
@@ -75,6 +76,7 @@ export const Layout = (props: {children: ReactNode}) => {
                 <LayoutBody>
                   <GlobalHooks />
                   {props.children}
+                  {toasterComponent}
                 </LayoutBody>
                 <NextProgressBar />
               </ThemeProvider>
