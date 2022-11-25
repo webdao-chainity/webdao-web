@@ -9,11 +9,19 @@ import {ThemeContext} from "context/themes";
 import {ModalProvider} from '@/components/Modal'
 import {Web3ReactProvider} from '@web3-react/core'
 import {getLibrary} from '@/engine/config'
+import useEagerConnect from "@/hooks/useEagerConnect";
 
 interface ILayout {
     className: string;
     children: ReactNode;
     theme: object;
+}
+
+
+
+function GlobalHooks() {
+    useEagerConnect()
+    return null
 }
 
 const LayoutBodyComp = (props: ILayout) => {
@@ -58,6 +66,7 @@ export const Layout = (props: { children: ReactNode }) => {
                     <ThemeProvider theme={themeData}>
                         <GlobalStyle/>
                         <LayoutBody>
+                            <GlobalHooks />
                             {props.children}
                         </LayoutBody>
                         <NextProgressBar/>

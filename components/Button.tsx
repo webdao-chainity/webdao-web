@@ -65,12 +65,18 @@ export const Button = withTheme(styled(ButtonComp)(() => {
         opacity: 0.8;
       }
       .yes {
-        background-color: chartreuse;
-        color: white;
+        //background-color: chartreuse;
+        //color: white;
+        border: 1px solid #888;
+        background-color: transparent;
+        color: unset;
       }
       .no {
-        background-color: darkred;
-        color: white;
+        //background-color: darkred;
+        //color: white;
+        color: unset;
+        border: 1px solid #888;
+        background-color: transparent;
       }
     `
 }))

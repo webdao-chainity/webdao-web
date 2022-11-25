@@ -1,5 +1,5 @@
 import styles from "./style.module.scss";
-import React from "react";
+import React, {useEffect} from "react";
 import Head from "next/head";
 import {Layout} from "@/widget/Layout";
 import {Button, ButtonType} from "@/components";
@@ -10,6 +10,8 @@ import {DAY_FORMAT_DMY} from "@/constants";
 import {dehydrate, QueryClient, useQuery} from "react-query";
 import {getEventsListApi} from "@/helpers/api";
 import {NextPage} from "next";
+import { ethers } from 'ethers'
+import {VOTE_CONTRACT_ABI, VOTE_CONTRACT_ADDRESS} from "@/constants/env";
 
 
 const Launchpad: NextPage = (props: any) => {
@@ -23,6 +25,20 @@ const Launchpad: NextPage = (props: any) => {
     //     website: 'https://presale.lux.world',
     //     videoUrl: 'https://www.youtube.com/embed/_jqQbLXAJ9U'
     // }
+
+    const connectContract = async () => {
+        const ethereum = _.get(window, 'ethereum');
+        if (!ethereum) return
+        const provider = new ethers.providers.Web3Provider(ethereum)
+        const contract = new ethers.Contract(VOTE_CONTRACT_ADDRESS, VOTE_CONTRACT_ABI)
+        contract.connect(provider)
+        const a = await contract.viewVotingById(1, false)
+        console.log(a)
+    }
+
+    useEffect(() => {
+        connectContract()
+    }, [])
 
     const {data: dataEvents} = useQuery(
         "getEventsListApi",

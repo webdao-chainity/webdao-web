@@ -4,7 +4,8 @@ import { SvgProps } from '@/components/Svg/types'
 export enum ChainId {
   ETHEREUM = 1,
   BSC = 56,
-  BSC_TESTNET = 97
+  BSC_TESTNET = 97,
+  GOERLI = 5
 }
 
 export interface Address {
@@ -28,6 +29,7 @@ export enum ConnectorNames {
   WalletConnect = 'walletconnect',
   WalletConnectETH = 'walletconnectETH',
   BSC = 'bsc',
+  Goerli = 'goerli',
   // Blocto = 'blocto',
   // WalletLink = 'walletlink',
 }

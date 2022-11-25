@@ -1,10 +1,10 @@
-import { ChainId, Config, ConnectorNames } from './types'
-import { AbstractConnector } from '@web3-react/abstract-connector'
-import { WalletConnectConnector } from '@web3-react/walletconnect-connector'
-import { BscConnector } from '@binance-chain/bsc-connector'
+import {ChainId, Config, ConnectorNames} from './types'
+import {AbstractConnector} from '@web3-react/abstract-connector'
+import {WalletConnectConnector} from '@web3-react/walletconnect-connector'
+import {BscConnector} from '@binance-chain/bsc-connector'
 // import getNodeUrl from '@/utils/getRpcUrl'
-import { InjectedConnector } from '@web3-react/injected-connector'
-import { ExternalProvider, JsonRpcFetchFunc, Web3Provider } from '@ethersproject/providers'
+import {InjectedConnector} from '@web3-react/injected-connector'
+import {ExternalProvider, JsonRpcFetchFunc, Web3Provider} from '@ethersproject/providers'
 
 import BinanceChain from '@/components/Svg/Icons/BinanceChain'
 // import Blocto from '@/components/Svg/Icons/Blocto'
@@ -16,9 +16,9 @@ import Metamask from '@/components/Svg/Icons/Metamask'
 // import TokenPocket from '@/components/Svg/Icons/TokenPocket'
 // import TrustWallet from '@/components/Svg/Icons/TrustWallet'
 // import WalletConnect from '@/components/Svg/Icons/WalletConnect'
-import { hexlify } from '@ethersproject/bytes'
-import { toUtf8Bytes } from '@ethersproject/strings'
-import { bscRPCEndpoint, ethRPCEndpoint } from '@/engine/providers'
+import {hexlify} from '@ethersproject/bytes'
+import {toUtf8Bytes} from '@ethersproject/strings'
+import {bscRPCEndpoint, ethRPCEndpoint} from '@/engine/providers'
 import _ from "lodash";
 
 export const CHAIN_ID = `${process.env.NEXT_PUBLIC_CHAIN_ID || '56'}`
@@ -102,7 +102,8 @@ export const walletLocalStorageKey = 'wallet'
 export const BASE_BSC_SCAN_URLS = {
   [ChainId.BSC]: 'https://bscscan.com',
   [ChainId.BSC_TESTNET]: 'https://testnet.bscscan.com',
-  [ChainId.ETHEREUM]: 'https://etherscan.io/'
+  [ChainId.ETHEREUM]: 'https://etherscan.io/',
+  [ChainId.GOERLI]: 'https://goerli.infura.io/v3/'
 }
 
 // default allowed slippage, in bips
@@ -114,8 +115,8 @@ const POLLING_INTERVAL = 12000
 const chainId = parseInt(CHAIN_ID, 10)
 // const rpcUrl = getNodeUrl() || ''
 
-export const injected = new InjectedConnector({supportedChainIds: [chainId, ChainId.ETHEREUM]})
-export const ethConnector = new InjectedConnector({supportedChainIds: [ChainId.BSC, ChainId.ETHEREUM]})
+export const injected = new InjectedConnector({supportedChainIds: [chainId, ChainId.ETHEREUM, ChainId.GOERLI]})
+export const ethConnector = new InjectedConnector({supportedChainIds: [ChainId.BSC, ChainId.ETHEREUM, ChainId.GOERLI]})
 
 const walletconnect = new WalletConnectConnector({
   rpc: {
@@ -143,6 +144,7 @@ export const connectorsByName = {
   [ConnectorNames.WalletConnect]: walletconnect,
   [ConnectorNames.WalletConnectETH]: walletconnectETH,
   [ConnectorNames.BSC]: bscConnector,
+  [ConnectorNames.Goerli]: ethConnector,
   // [ConnectorNames.Blocto]: async () => {
   //   const {BloctoConnector} = await import('@blocto/blocto-connector')
   //   return new BloctoConnector({chainId, rpc: rpcUrl})

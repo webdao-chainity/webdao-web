@@ -14,7 +14,6 @@ interface IItemCard {
 
 export const ItemCard = (props: IItemCard) => {
     const router = useRouter();
-    console.log(_.get(props, 'data.startTime', ''))
 
     const data = {
         logo: 'https://picsum.photos/200/300',

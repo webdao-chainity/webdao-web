@@ -19,6 +19,10 @@ const NETWORK_CONFIG = {
   [ChainId.ETHEREUM]: {
     name: 'Ethereum Mainnet',
     scanURL: BASE_BSC_SCAN_URLS[ChainId.ETHEREUM],
+  },
+  [ChainId.GOERLI]: {
+    name: 'Goerli',
+    scanURL: BASE_BSC_SCAN_URLS[ChainId.ETHEREUM],
   }
 }
 

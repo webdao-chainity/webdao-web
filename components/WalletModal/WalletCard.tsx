@@ -39,7 +39,6 @@ export const MoreWalletCard: React.FC<MoreWalletCardProps> = ({...props}) => {
 
 const WalletCard: React.FC<Props> = ({login, walletConfig, onDismiss}) => {
     const {title, icon: Icon} = walletConfig
-    console.log(login)
 
     return (
         <WalletButton

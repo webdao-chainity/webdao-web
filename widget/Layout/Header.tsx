@@ -17,6 +17,7 @@ interface IHeader {
 
 const HeaderComp = (props: IHeader) => {
     const {login, logout, account} = useAuth();
+    console.log(account)
     const {onPresentConnectModal} = useWalletModal(login);
     const router = useRouter();
 
@@ -37,8 +38,11 @@ const HeaderComp = (props: IHeader) => {
                 }/>
                 <Button name={account ? 'Disconnect wallet' : 'Connect wallet'} type={ButtonType.primary}
                         onClick={() => {
-                            if (account) logout()
-                            onPresentConnectModal()
+                            if (account) {
+                                logout();
+                                return
+                            }
+                            onPresentConnectModal();
                         }}/>
             </div>
         </div>
