@@ -24,11 +24,11 @@ export function getProviderOrSigner(
 }
 
 export const parseIntValue = (value: string | null) => {
-  try{
-    if (value == null) return null
-    return parseInt(value)
-  } catch (e){
-    console.log(e)
-    return null
+  try {
+    if (value == null) return null;
+    return parseInt(value);
+  } catch (e) {
+    console.log(e);
+    return null;
   }
-}
+};

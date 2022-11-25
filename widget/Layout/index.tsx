@@ -11,7 +11,7 @@ import {Web3ReactProvider} from '@web3-react/core';
 import {getLibrary} from '@/engine/config';
 import useEagerConnect from '@/hooks/useEagerConnect';
 import {AuthProvider} from '@/context/auth';
-import useToast from "@/hooks/useToast";
+import useToast from '@/hooks/useToast';
 
 interface ILayout {
   className: string;
