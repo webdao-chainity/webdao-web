@@ -1,27 +1,26 @@
-import React from 'react'
-import { SvgProps } from '@/components/Svg/types'
+import React from 'react';
+import {SvgProps} from '@/components/Svg/types';
 
 export enum ChainId {
   ETHEREUM = 1,
   BSC = 56,
   BSC_TESTNET = 97,
-  GOERLI = 5
+  GOERLI = 5,
 }
 
 export interface Address {
-  97?: string
-  56: string
+  97?: string;
+  56: string;
 }
 
-
 export interface SerializedToken {
-  chainId: number
-  address: string
-  decimals: number
-  symbol?: string
-  name?: string
-  projectLink?: string
-  logoURI?: string
+  chainId: number;
+  address: string;
+  decimals: number;
+  symbol?: string;
+  name?: string;
+  projectLink?: string;
+  logoURI?: string;
 }
 
 export enum ConnectorNames {
@@ -35,12 +34,12 @@ export enum ConnectorNames {
 }
 
 export interface Config {
-  title: string
-  icon: React.FC<SvgProps>
-  connectorId: ConnectorNames
-  priority: number
-  mobileOnly?: boolean
-  href?: string
+  title: string;
+  icon: React.FC<SvgProps>;
+  connectorId: ConnectorNames;
+  priority: number;
+  mobileOnly?: boolean;
+  href?: string;
 }
 
 export enum FetchStatus {
@@ -49,4 +48,3 @@ export enum FetchStatus {
   Fetched = 'FETCHED',
   Failed = 'FAILED',
 }
-

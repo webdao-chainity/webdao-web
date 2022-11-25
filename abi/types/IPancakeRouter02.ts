@@ -13,42 +13,42 @@ import {
   PopulatedTransaction,
   Signer,
   utils,
-} from "ethers";
-import { FunctionFragment, Result } from "@ethersproject/abi";
-import { Listener, Provider } from "@ethersproject/providers";
-import { TypedEventFilter, TypedEvent, TypedListener, OnEvent } from "./common";
+} from 'ethers';
+import {FunctionFragment, Result} from '@ethersproject/abi';
+import {Listener, Provider} from '@ethersproject/providers';
+import {TypedEventFilter, TypedEvent, TypedListener, OnEvent} from './common';
 
 export interface IPancakeRouter02Interface extends utils.Interface {
   functions: {
-    "WETH()": FunctionFragment;
-    "addLiquidity(address,address,uint256,uint256,uint256,uint256,address,uint256)": FunctionFragment;
-    "addLiquidityETH(address,uint256,uint256,uint256,address,uint256)": FunctionFragment;
-    "factory()": FunctionFragment;
-    "getAmountIn(uint256,uint256,uint256)": FunctionFragment;
-    "getAmountOut(uint256,uint256,uint256)": FunctionFragment;
-    "getAmountsIn(uint256,address[])": FunctionFragment;
-    "getAmountsOut(uint256,address[])": FunctionFragment;
-    "quote(uint256,uint256,uint256)": FunctionFragment;
-    "removeLiquidity(address,address,uint256,uint256,uint256,address,uint256)": FunctionFragment;
-    "removeLiquidityETH(address,uint256,uint256,uint256,address,uint256)": FunctionFragment;
-    "removeLiquidityETHSupportingFeeOnTransferTokens(address,uint256,uint256,uint256,address,uint256)": FunctionFragment;
-    "removeLiquidityETHWithPermit(address,uint256,uint256,uint256,address,uint256,bool,uint8,bytes32,bytes32)": FunctionFragment;
-    "removeLiquidityETHWithPermitSupportingFeeOnTransferTokens(address,uint256,uint256,uint256,address,uint256,bool,uint8,bytes32,bytes32)": FunctionFragment;
-    "removeLiquidityWithPermit(address,address,uint256,uint256,uint256,address,uint256,bool,uint8,bytes32,bytes32)": FunctionFragment;
-    "swapETHForExactTokens(uint256,address[],address,uint256)": FunctionFragment;
-    "swapExactETHForTokens(uint256,address[],address,uint256)": FunctionFragment;
-    "swapExactETHForTokensSupportingFeeOnTransferTokens(uint256,address[],address,uint256)": FunctionFragment;
-    "swapExactTokensForETH(uint256,uint256,address[],address,uint256)": FunctionFragment;
-    "swapExactTokensForETHSupportingFeeOnTransferTokens(uint256,uint256,address[],address,uint256)": FunctionFragment;
-    "swapExactTokensForTokens(uint256,uint256,address[],address,uint256)": FunctionFragment;
-    "swapExactTokensForTokensSupportingFeeOnTransferTokens(uint256,uint256,address[],address,uint256)": FunctionFragment;
-    "swapTokensForExactETH(uint256,uint256,address[],address,uint256)": FunctionFragment;
-    "swapTokensForExactTokens(uint256,uint256,address[],address,uint256)": FunctionFragment;
+    'WETH()': FunctionFragment;
+    'addLiquidity(address,address,uint256,uint256,uint256,uint256,address,uint256)': FunctionFragment;
+    'addLiquidityETH(address,uint256,uint256,uint256,address,uint256)': FunctionFragment;
+    'factory()': FunctionFragment;
+    'getAmountIn(uint256,uint256,uint256)': FunctionFragment;
+    'getAmountOut(uint256,uint256,uint256)': FunctionFragment;
+    'getAmountsIn(uint256,address[])': FunctionFragment;
+    'getAmountsOut(uint256,address[])': FunctionFragment;
+    'quote(uint256,uint256,uint256)': FunctionFragment;
+    'removeLiquidity(address,address,uint256,uint256,uint256,address,uint256)': FunctionFragment;
+    'removeLiquidityETH(address,uint256,uint256,uint256,address,uint256)': FunctionFragment;
+    'removeLiquidityETHSupportingFeeOnTransferTokens(address,uint256,uint256,uint256,address,uint256)': FunctionFragment;
+    'removeLiquidityETHWithPermit(address,uint256,uint256,uint256,address,uint256,bool,uint8,bytes32,bytes32)': FunctionFragment;
+    'removeLiquidityETHWithPermitSupportingFeeOnTransferTokens(address,uint256,uint256,uint256,address,uint256,bool,uint8,bytes32,bytes32)': FunctionFragment;
+    'removeLiquidityWithPermit(address,address,uint256,uint256,uint256,address,uint256,bool,uint8,bytes32,bytes32)': FunctionFragment;
+    'swapETHForExactTokens(uint256,address[],address,uint256)': FunctionFragment;
+    'swapExactETHForTokens(uint256,address[],address,uint256)': FunctionFragment;
+    'swapExactETHForTokensSupportingFeeOnTransferTokens(uint256,address[],address,uint256)': FunctionFragment;
+    'swapExactTokensForETH(uint256,uint256,address[],address,uint256)': FunctionFragment;
+    'swapExactTokensForETHSupportingFeeOnTransferTokens(uint256,uint256,address[],address,uint256)': FunctionFragment;
+    'swapExactTokensForTokens(uint256,uint256,address[],address,uint256)': FunctionFragment;
+    'swapExactTokensForTokensSupportingFeeOnTransferTokens(uint256,uint256,address[],address,uint256)': FunctionFragment;
+    'swapTokensForExactETH(uint256,uint256,address[],address,uint256)': FunctionFragment;
+    'swapTokensForExactTokens(uint256,uint256,address[],address,uint256)': FunctionFragment;
   };
 
-  encodeFunctionData(functionFragment: "WETH", values?: undefined): string;
+  encodeFunctionData(functionFragment: 'WETH', values?: undefined): string;
   encodeFunctionData(
-    functionFragment: "addLiquidity",
+    functionFragment: 'addLiquidity',
     values: [
       string,
       string,
@@ -61,73 +61,38 @@ export interface IPancakeRouter02Interface extends utils.Interface {
     ]
   ): string;
   encodeFunctionData(
-    functionFragment: "addLiquidityETH",
-    values: [
-      string,
-      BigNumberish,
-      BigNumberish,
-      BigNumberish,
-      string,
-      BigNumberish
-    ]
+    functionFragment: 'addLiquidityETH',
+    values: [string, BigNumberish, BigNumberish, BigNumberish, string, BigNumberish]
   ): string;
-  encodeFunctionData(functionFragment: "factory", values?: undefined): string;
+  encodeFunctionData(functionFragment: 'factory', values?: undefined): string;
   encodeFunctionData(
-    functionFragment: "getAmountIn",
+    functionFragment: 'getAmountIn',
     values: [BigNumberish, BigNumberish, BigNumberish]
   ): string;
   encodeFunctionData(
-    functionFragment: "getAmountOut",
+    functionFragment: 'getAmountOut',
+    values: [BigNumberish, BigNumberish, BigNumberish]
+  ): string;
+  encodeFunctionData(functionFragment: 'getAmountsIn', values: [BigNumberish, string[]]): string;
+  encodeFunctionData(functionFragment: 'getAmountsOut', values: [BigNumberish, string[]]): string;
+  encodeFunctionData(
+    functionFragment: 'quote',
     values: [BigNumberish, BigNumberish, BigNumberish]
   ): string;
   encodeFunctionData(
-    functionFragment: "getAmountsIn",
-    values: [BigNumberish, string[]]
+    functionFragment: 'removeLiquidity',
+    values: [string, string, BigNumberish, BigNumberish, BigNumberish, string, BigNumberish]
   ): string;
   encodeFunctionData(
-    functionFragment: "getAmountsOut",
-    values: [BigNumberish, string[]]
+    functionFragment: 'removeLiquidityETH',
+    values: [string, BigNumberish, BigNumberish, BigNumberish, string, BigNumberish]
   ): string;
   encodeFunctionData(
-    functionFragment: "quote",
-    values: [BigNumberish, BigNumberish, BigNumberish]
+    functionFragment: 'removeLiquidityETHSupportingFeeOnTransferTokens',
+    values: [string, BigNumberish, BigNumberish, BigNumberish, string, BigNumberish]
   ): string;
   encodeFunctionData(
-    functionFragment: "removeLiquidity",
-    values: [
-      string,
-      string,
-      BigNumberish,
-      BigNumberish,
-      BigNumberish,
-      string,
-      BigNumberish
-    ]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "removeLiquidityETH",
-    values: [
-      string,
-      BigNumberish,
-      BigNumberish,
-      BigNumberish,
-      string,
-      BigNumberish
-    ]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "removeLiquidityETHSupportingFeeOnTransferTokens",
-    values: [
-      string,
-      BigNumberish,
-      BigNumberish,
-      BigNumberish,
-      string,
-      BigNumberish
-    ]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "removeLiquidityETHWithPermit",
+    functionFragment: 'removeLiquidityETHWithPermit',
     values: [
       string,
       BigNumberish,
@@ -142,7 +107,7 @@ export interface IPancakeRouter02Interface extends utils.Interface {
     ]
   ): string;
   encodeFunctionData(
-    functionFragment: "removeLiquidityETHWithPermitSupportingFeeOnTransferTokens",
+    functionFragment: 'removeLiquidityETHWithPermitSupportingFeeOnTransferTokens',
     values: [
       string,
       BigNumberish,
@@ -157,7 +122,7 @@ export interface IPancakeRouter02Interface extends utils.Interface {
     ]
   ): string;
   encodeFunctionData(
-    functionFragment: "removeLiquidityWithPermit",
+    functionFragment: 'removeLiquidityWithPermit',
     values: [
       string,
       string,
@@ -173,129 +138,81 @@ export interface IPancakeRouter02Interface extends utils.Interface {
     ]
   ): string;
   encodeFunctionData(
-    functionFragment: "swapETHForExactTokens",
+    functionFragment: 'swapETHForExactTokens',
     values: [BigNumberish, string[], string, BigNumberish]
   ): string;
   encodeFunctionData(
-    functionFragment: "swapExactETHForTokens",
+    functionFragment: 'swapExactETHForTokens',
     values: [BigNumberish, string[], string, BigNumberish]
   ): string;
   encodeFunctionData(
-    functionFragment: "swapExactETHForTokensSupportingFeeOnTransferTokens",
+    functionFragment: 'swapExactETHForTokensSupportingFeeOnTransferTokens',
     values: [BigNumberish, string[], string, BigNumberish]
   ): string;
   encodeFunctionData(
-    functionFragment: "swapExactTokensForETH",
+    functionFragment: 'swapExactTokensForETH',
     values: [BigNumberish, BigNumberish, string[], string, BigNumberish]
   ): string;
   encodeFunctionData(
-    functionFragment: "swapExactTokensForETHSupportingFeeOnTransferTokens",
+    functionFragment: 'swapExactTokensForETHSupportingFeeOnTransferTokens',
     values: [BigNumberish, BigNumberish, string[], string, BigNumberish]
   ): string;
   encodeFunctionData(
-    functionFragment: "swapExactTokensForTokens",
+    functionFragment: 'swapExactTokensForTokens',
     values: [BigNumberish, BigNumberish, string[], string, BigNumberish]
   ): string;
   encodeFunctionData(
-    functionFragment: "swapExactTokensForTokensSupportingFeeOnTransferTokens",
+    functionFragment: 'swapExactTokensForTokensSupportingFeeOnTransferTokens',
     values: [BigNumberish, BigNumberish, string[], string, BigNumberish]
   ): string;
   encodeFunctionData(
-    functionFragment: "swapTokensForExactETH",
+    functionFragment: 'swapTokensForExactETH',
     values: [BigNumberish, BigNumberish, string[], string, BigNumberish]
   ): string;
   encodeFunctionData(
-    functionFragment: "swapTokensForExactTokens",
+    functionFragment: 'swapTokensForExactTokens',
     values: [BigNumberish, BigNumberish, string[], string, BigNumberish]
   ): string;
 
-  decodeFunctionResult(functionFragment: "WETH", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: 'WETH', data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: 'addLiquidity', data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: 'addLiquidityETH', data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: 'factory', data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: 'getAmountIn', data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: 'getAmountOut', data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: 'getAmountsIn', data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: 'getAmountsOut', data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: 'quote', data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: 'removeLiquidity', data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: 'removeLiquidityETH', data: BytesLike): Result;
   decodeFunctionResult(
-    functionFragment: "addLiquidity",
+    functionFragment: 'removeLiquidityETHSupportingFeeOnTransferTokens',
     data: BytesLike
   ): Result;
+  decodeFunctionResult(functionFragment: 'removeLiquidityETHWithPermit', data: BytesLike): Result;
   decodeFunctionResult(
-    functionFragment: "addLiquidityETH",
+    functionFragment: 'removeLiquidityETHWithPermitSupportingFeeOnTransferTokens',
     data: BytesLike
   ): Result;
-  decodeFunctionResult(functionFragment: "factory", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: 'removeLiquidityWithPermit', data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: 'swapETHForExactTokens', data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: 'swapExactETHForTokens', data: BytesLike): Result;
   decodeFunctionResult(
-    functionFragment: "getAmountIn",
+    functionFragment: 'swapExactETHForTokensSupportingFeeOnTransferTokens',
     data: BytesLike
   ): Result;
+  decodeFunctionResult(functionFragment: 'swapExactTokensForETH', data: BytesLike): Result;
   decodeFunctionResult(
-    functionFragment: "getAmountOut",
+    functionFragment: 'swapExactTokensForETHSupportingFeeOnTransferTokens',
     data: BytesLike
   ): Result;
+  decodeFunctionResult(functionFragment: 'swapExactTokensForTokens', data: BytesLike): Result;
   decodeFunctionResult(
-    functionFragment: "getAmountsIn",
+    functionFragment: 'swapExactTokensForTokensSupportingFeeOnTransferTokens',
     data: BytesLike
   ): Result;
-  decodeFunctionResult(
-    functionFragment: "getAmountsOut",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(functionFragment: "quote", data: BytesLike): Result;
-  decodeFunctionResult(
-    functionFragment: "removeLiquidity",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "removeLiquidityETH",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "removeLiquidityETHSupportingFeeOnTransferTokens",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "removeLiquidityETHWithPermit",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "removeLiquidityETHWithPermitSupportingFeeOnTransferTokens",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "removeLiquidityWithPermit",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "swapETHForExactTokens",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "swapExactETHForTokens",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "swapExactETHForTokensSupportingFeeOnTransferTokens",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "swapExactTokensForETH",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "swapExactTokensForETHSupportingFeeOnTransferTokens",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "swapExactTokensForTokens",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "swapExactTokensForTokensSupportingFeeOnTransferTokens",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "swapTokensForExactETH",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "swapTokensForExactTokens",
-    data: BytesLike
-  ): Result;
+  decodeFunctionResult(functionFragment: 'swapTokensForExactETH', data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: 'swapTokensForExactTokens', data: BytesLike): Result;
 
   events: {};
 }
@@ -317,9 +234,7 @@ export interface IPancakeRouter02 extends BaseContract {
     eventFilter?: TypedEventFilter<TEvent>
   ): Array<TypedListener<TEvent>>;
   listeners(eventName?: string): Array<Listener>;
-  removeAllListeners<TEvent extends TypedEvent>(
-    eventFilter: TypedEventFilter<TEvent>
-  ): this;
+  removeAllListeners<TEvent extends TypedEvent>(eventFilter: TypedEventFilter<TEvent>): this;
   removeAllListeners(eventName?: string): this;
   off: OnEvent<this>;
   on: OnEvent<this>;
@@ -338,7 +253,7 @@ export interface IPancakeRouter02 extends BaseContract {
       amountBMin: BigNumberish,
       to: string,
       deadline: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & {from?: string | Promise<string>}
     ): Promise<ContractTransaction>;
 
     addLiquidityETH(
@@ -348,7 +263,7 @@ export interface IPancakeRouter02 extends BaseContract {
       amountETHMin: BigNumberish,
       to: string,
       deadline: BigNumberish,
-      overrides?: PayableOverrides & { from?: string | Promise<string> }
+      overrides?: PayableOverrides & {from?: string | Promise<string>}
     ): Promise<ContractTransaction>;
 
     factory(overrides?: CallOverrides): Promise<[string]>;
@@ -358,33 +273,33 @@ export interface IPancakeRouter02 extends BaseContract {
       reserveIn: BigNumberish,
       reserveOut: BigNumberish,
       overrides?: CallOverrides
-    ): Promise<[BigNumber] & { amountIn: BigNumber }>;
+    ): Promise<[BigNumber] & {amountIn: BigNumber}>;
 
     getAmountOut(
       amountIn: BigNumberish,
       reserveIn: BigNumberish,
       reserveOut: BigNumberish,
       overrides?: CallOverrides
-    ): Promise<[BigNumber] & { amountOut: BigNumber }>;
+    ): Promise<[BigNumber] & {amountOut: BigNumber}>;
 
     getAmountsIn(
       amountOut: BigNumberish,
       path: string[],
       overrides?: CallOverrides
-    ): Promise<[BigNumber[]] & { amounts: BigNumber[] }>;
+    ): Promise<[BigNumber[]] & {amounts: BigNumber[]}>;
 
     getAmountsOut(
       amountIn: BigNumberish,
       path: string[],
       overrides?: CallOverrides
-    ): Promise<[BigNumber[]] & { amounts: BigNumber[] }>;
+    ): Promise<[BigNumber[]] & {amounts: BigNumber[]}>;
 
     quote(
       amountA: BigNumberish,
       reserveA: BigNumberish,
       reserveB: BigNumberish,
       overrides?: CallOverrides
-    ): Promise<[BigNumber] & { amountB: BigNumber }>;
+    ): Promise<[BigNumber] & {amountB: BigNumber}>;
 
     removeLiquidity(
       tokenA: string,
@@ -394,7 +309,7 @@ export interface IPancakeRouter02 extends BaseContract {
       amountBMin: BigNumberish,
       to: string,
       deadline: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & {from?: string | Promise<string>}
     ): Promise<ContractTransaction>;
 
     removeLiquidityETH(
@@ -404,7 +319,7 @@ export interface IPancakeRouter02 extends BaseContract {
       amountETHMin: BigNumberish,
       to: string,
       deadline: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & {from?: string | Promise<string>}
     ): Promise<ContractTransaction>;
 
     removeLiquidityETHSupportingFeeOnTransferTokens(
@@ -414,7 +329,7 @@ export interface IPancakeRouter02 extends BaseContract {
       amountETHMin: BigNumberish,
       to: string,
       deadline: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & {from?: string | Promise<string>}
     ): Promise<ContractTransaction>;
 
     removeLiquidityETHWithPermit(
@@ -428,7 +343,7 @@ export interface IPancakeRouter02 extends BaseContract {
       v: BigNumberish,
       r: BytesLike,
       s: BytesLike,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & {from?: string | Promise<string>}
     ): Promise<ContractTransaction>;
 
     removeLiquidityETHWithPermitSupportingFeeOnTransferTokens(
@@ -442,7 +357,7 @@ export interface IPancakeRouter02 extends BaseContract {
       v: BigNumberish,
       r: BytesLike,
       s: BytesLike,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & {from?: string | Promise<string>}
     ): Promise<ContractTransaction>;
 
     removeLiquidityWithPermit(
@@ -457,7 +372,7 @@ export interface IPancakeRouter02 extends BaseContract {
       v: BigNumberish,
       r: BytesLike,
       s: BytesLike,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & {from?: string | Promise<string>}
     ): Promise<ContractTransaction>;
 
     swapETHForExactTokens(
@@ -465,7 +380,7 @@ export interface IPancakeRouter02 extends BaseContract {
       path: string[],
       to: string,
       deadline: BigNumberish,
-      overrides?: PayableOverrides & { from?: string | Promise<string> }
+      overrides?: PayableOverrides & {from?: string | Promise<string>}
     ): Promise<ContractTransaction>;
 
     swapExactETHForTokens(
@@ -473,7 +388,7 @@ export interface IPancakeRouter02 extends BaseContract {
       path: string[],
       to: string,
       deadline: BigNumberish,
-      overrides?: PayableOverrides & { from?: string | Promise<string> }
+      overrides?: PayableOverrides & {from?: string | Promise<string>}
     ): Promise<ContractTransaction>;
 
     swapExactETHForTokensSupportingFeeOnTransferTokens(
@@ -481,7 +396,7 @@ export interface IPancakeRouter02 extends BaseContract {
       path: string[],
       to: string,
       deadline: BigNumberish,
-      overrides?: PayableOverrides & { from?: string | Promise<string> }
+      overrides?: PayableOverrides & {from?: string | Promise<string>}
     ): Promise<ContractTransaction>;
 
     swapExactTokensForETH(
@@ -490,7 +405,7 @@ export interface IPancakeRouter02 extends BaseContract {
       path: string[],
       to: string,
       deadline: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & {from?: string | Promise<string>}
     ): Promise<ContractTransaction>;
 
     swapExactTokensForETHSupportingFeeOnTransferTokens(
@@ -499,7 +414,7 @@ export interface IPancakeRouter02 extends BaseContract {
       path: string[],
       to: string,
       deadline: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & {from?: string | Promise<string>}
     ): Promise<ContractTransaction>;
 
     swapExactTokensForTokens(
@@ -508,7 +423,7 @@ export interface IPancakeRouter02 extends BaseContract {
       path: string[],
       to: string,
       deadline: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & {from?: string | Promise<string>}
     ): Promise<ContractTransaction>;
 
     swapExactTokensForTokensSupportingFeeOnTransferTokens(
@@ -517,7 +432,7 @@ export interface IPancakeRouter02 extends BaseContract {
       path: string[],
       to: string,
       deadline: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & {from?: string | Promise<string>}
     ): Promise<ContractTransaction>;
 
     swapTokensForExactETH(
@@ -526,7 +441,7 @@ export interface IPancakeRouter02 extends BaseContract {
       path: string[],
       to: string,
       deadline: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & {from?: string | Promise<string>}
     ): Promise<ContractTransaction>;
 
     swapTokensForExactTokens(
@@ -535,7 +450,7 @@ export interface IPancakeRouter02 extends BaseContract {
       path: string[],
       to: string,
       deadline: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & {from?: string | Promise<string>}
     ): Promise<ContractTransaction>;
   };
 
@@ -550,7 +465,7 @@ export interface IPancakeRouter02 extends BaseContract {
     amountBMin: BigNumberish,
     to: string,
     deadline: BigNumberish,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides & {from?: string | Promise<string>}
   ): Promise<ContractTransaction>;
 
   addLiquidityETH(
@@ -560,7 +475,7 @@ export interface IPancakeRouter02 extends BaseContract {
     amountETHMin: BigNumberish,
     to: string,
     deadline: BigNumberish,
-    overrides?: PayableOverrides & { from?: string | Promise<string> }
+    overrides?: PayableOverrides & {from?: string | Promise<string>}
   ): Promise<ContractTransaction>;
 
   factory(overrides?: CallOverrides): Promise<string>;
@@ -606,7 +521,7 @@ export interface IPancakeRouter02 extends BaseContract {
     amountBMin: BigNumberish,
     to: string,
     deadline: BigNumberish,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides & {from?: string | Promise<string>}
   ): Promise<ContractTransaction>;
 
   removeLiquidityETH(
@@ -616,7 +531,7 @@ export interface IPancakeRouter02 extends BaseContract {
     amountETHMin: BigNumberish,
     to: string,
     deadline: BigNumberish,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides & {from?: string | Promise<string>}
   ): Promise<ContractTransaction>;
 
   removeLiquidityETHSupportingFeeOnTransferTokens(
@@ -626,7 +541,7 @@ export interface IPancakeRouter02 extends BaseContract {
     amountETHMin: BigNumberish,
     to: string,
     deadline: BigNumberish,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides & {from?: string | Promise<string>}
   ): Promise<ContractTransaction>;
 
   removeLiquidityETHWithPermit(
@@ -640,7 +555,7 @@ export interface IPancakeRouter02 extends BaseContract {
     v: BigNumberish,
     r: BytesLike,
     s: BytesLike,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides & {from?: string | Promise<string>}
   ): Promise<ContractTransaction>;
 
   removeLiquidityETHWithPermitSupportingFeeOnTransferTokens(
@@ -654,7 +569,7 @@ export interface IPancakeRouter02 extends BaseContract {
     v: BigNumberish,
     r: BytesLike,
     s: BytesLike,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides & {from?: string | Promise<string>}
   ): Promise<ContractTransaction>;
 
   removeLiquidityWithPermit(
@@ -669,7 +584,7 @@ export interface IPancakeRouter02 extends BaseContract {
     v: BigNumberish,
     r: BytesLike,
     s: BytesLike,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides & {from?: string | Promise<string>}
   ): Promise<ContractTransaction>;
 
   swapETHForExactTokens(
@@ -677,7 +592,7 @@ export interface IPancakeRouter02 extends BaseContract {
     path: string[],
     to: string,
     deadline: BigNumberish,
-    overrides?: PayableOverrides & { from?: string | Promise<string> }
+    overrides?: PayableOverrides & {from?: string | Promise<string>}
   ): Promise<ContractTransaction>;
 
   swapExactETHForTokens(
@@ -685,7 +600,7 @@ export interface IPancakeRouter02 extends BaseContract {
     path: string[],
     to: string,
     deadline: BigNumberish,
-    overrides?: PayableOverrides & { from?: string | Promise<string> }
+    overrides?: PayableOverrides & {from?: string | Promise<string>}
   ): Promise<ContractTransaction>;
 
   swapExactETHForTokensSupportingFeeOnTransferTokens(
@@ -693,7 +608,7 @@ export interface IPancakeRouter02 extends BaseContract {
     path: string[],
     to: string,
     deadline: BigNumberish,
-    overrides?: PayableOverrides & { from?: string | Promise<string> }
+    overrides?: PayableOverrides & {from?: string | Promise<string>}
   ): Promise<ContractTransaction>;
 
   swapExactTokensForETH(
@@ -702,7 +617,7 @@ export interface IPancakeRouter02 extends BaseContract {
     path: string[],
     to: string,
     deadline: BigNumberish,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides & {from?: string | Promise<string>}
   ): Promise<ContractTransaction>;
 
   swapExactTokensForETHSupportingFeeOnTransferTokens(
@@ -711,7 +626,7 @@ export interface IPancakeRouter02 extends BaseContract {
     path: string[],
     to: string,
     deadline: BigNumberish,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides & {from?: string | Promise<string>}
   ): Promise<ContractTransaction>;
 
   swapExactTokensForTokens(
@@ -720,7 +635,7 @@ export interface IPancakeRouter02 extends BaseContract {
     path: string[],
     to: string,
     deadline: BigNumberish,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides & {from?: string | Promise<string>}
   ): Promise<ContractTransaction>;
 
   swapExactTokensForTokensSupportingFeeOnTransferTokens(
@@ -729,7 +644,7 @@ export interface IPancakeRouter02 extends BaseContract {
     path: string[],
     to: string,
     deadline: BigNumberish,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides & {from?: string | Promise<string>}
   ): Promise<ContractTransaction>;
 
   swapTokensForExactETH(
@@ -738,7 +653,7 @@ export interface IPancakeRouter02 extends BaseContract {
     path: string[],
     to: string,
     deadline: BigNumberish,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides & {from?: string | Promise<string>}
   ): Promise<ContractTransaction>;
 
   swapTokensForExactTokens(
@@ -747,7 +662,7 @@ export interface IPancakeRouter02 extends BaseContract {
     path: string[],
     to: string,
     deadline: BigNumberish,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    overrides?: Overrides & {from?: string | Promise<string>}
   ): Promise<ContractTransaction>;
 
   callStatic: {
@@ -831,9 +746,7 @@ export interface IPancakeRouter02 extends BaseContract {
       to: string,
       deadline: BigNumberish,
       overrides?: CallOverrides
-    ): Promise<
-      [BigNumber, BigNumber] & { amountA: BigNumber; amountB: BigNumber }
-    >;
+    ): Promise<[BigNumber, BigNumber] & {amountA: BigNumber; amountB: BigNumber}>;
 
     removeLiquidityETH(
       token: string,
@@ -843,9 +756,7 @@ export interface IPancakeRouter02 extends BaseContract {
       to: string,
       deadline: BigNumberish,
       overrides?: CallOverrides
-    ): Promise<
-      [BigNumber, BigNumber] & { amountToken: BigNumber; amountETH: BigNumber }
-    >;
+    ): Promise<[BigNumber, BigNumber] & {amountToken: BigNumber; amountETH: BigNumber}>;
 
     removeLiquidityETHSupportingFeeOnTransferTokens(
       token: string,
@@ -869,9 +780,7 @@ export interface IPancakeRouter02 extends BaseContract {
       r: BytesLike,
       s: BytesLike,
       overrides?: CallOverrides
-    ): Promise<
-      [BigNumber, BigNumber] & { amountToken: BigNumber; amountETH: BigNumber }
-    >;
+    ): Promise<[BigNumber, BigNumber] & {amountToken: BigNumber; amountETH: BigNumber}>;
 
     removeLiquidityETHWithPermitSupportingFeeOnTransferTokens(
       token: string,
@@ -900,9 +809,7 @@ export interface IPancakeRouter02 extends BaseContract {
       r: BytesLike,
       s: BytesLike,
       overrides?: CallOverrides
-    ): Promise<
-      [BigNumber, BigNumber] & { amountA: BigNumber; amountB: BigNumber }
-    >;
+    ): Promise<[BigNumber, BigNumber] & {amountA: BigNumber; amountB: BigNumber}>;
 
     swapETHForExactTokens(
       amountOut: BigNumberish,
@@ -997,7 +904,7 @@ export interface IPancakeRouter02 extends BaseContract {
       amountBMin: BigNumberish,
       to: string,
       deadline: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & {from?: string | Promise<string>}
     ): Promise<BigNumber>;
 
     addLiquidityETH(
@@ -1007,7 +914,7 @@ export interface IPancakeRouter02 extends BaseContract {
       amountETHMin: BigNumberish,
       to: string,
       deadline: BigNumberish,
-      overrides?: PayableOverrides & { from?: string | Promise<string> }
+      overrides?: PayableOverrides & {from?: string | Promise<string>}
     ): Promise<BigNumber>;
 
     factory(overrides?: CallOverrides): Promise<BigNumber>;
@@ -1053,7 +960,7 @@ export interface IPancakeRouter02 extends BaseContract {
       amountBMin: BigNumberish,
       to: string,
       deadline: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & {from?: string | Promise<string>}
     ): Promise<BigNumber>;
 
     removeLiquidityETH(
@@ -1063,7 +970,7 @@ export interface IPancakeRouter02 extends BaseContract {
       amountETHMin: BigNumberish,
       to: string,
       deadline: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & {from?: string | Promise<string>}
     ): Promise<BigNumber>;
 
     removeLiquidityETHSupportingFeeOnTransferTokens(
@@ -1073,7 +980,7 @@ export interface IPancakeRouter02 extends BaseContract {
       amountETHMin: BigNumberish,
       to: string,
       deadline: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & {from?: string | Promise<string>}
     ): Promise<BigNumber>;
 
     removeLiquidityETHWithPermit(
@@ -1087,7 +994,7 @@ export interface IPancakeRouter02 extends BaseContract {
       v: BigNumberish,
       r: BytesLike,
       s: BytesLike,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & {from?: string | Promise<string>}
     ): Promise<BigNumber>;
 
     removeLiquidityETHWithPermitSupportingFeeOnTransferTokens(
@@ -1101,7 +1008,7 @@ export interface IPancakeRouter02 extends BaseContract {
       v: BigNumberish,
       r: BytesLike,
       s: BytesLike,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & {from?: string | Promise<string>}
     ): Promise<BigNumber>;
 
     removeLiquidityWithPermit(
@@ -1116,7 +1023,7 @@ export interface IPancakeRouter02 extends BaseContract {
       v: BigNumberish,
       r: BytesLike,
       s: BytesLike,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & {from?: string | Promise<string>}
     ): Promise<BigNumber>;
 
     swapETHForExactTokens(
@@ -1124,7 +1031,7 @@ export interface IPancakeRouter02 extends BaseContract {
       path: string[],
       to: string,
       deadline: BigNumberish,
-      overrides?: PayableOverrides & { from?: string | Promise<string> }
+      overrides?: PayableOverrides & {from?: string | Promise<string>}
     ): Promise<BigNumber>;
 
     swapExactETHForTokens(
@@ -1132,7 +1039,7 @@ export interface IPancakeRouter02 extends BaseContract {
       path: string[],
       to: string,
       deadline: BigNumberish,
-      overrides?: PayableOverrides & { from?: string | Promise<string> }
+      overrides?: PayableOverrides & {from?: string | Promise<string>}
     ): Promise<BigNumber>;
 
     swapExactETHForTokensSupportingFeeOnTransferTokens(
@@ -1140,7 +1047,7 @@ export interface IPancakeRouter02 extends BaseContract {
       path: string[],
       to: string,
       deadline: BigNumberish,
-      overrides?: PayableOverrides & { from?: string | Promise<string> }
+      overrides?: PayableOverrides & {from?: string | Promise<string>}
     ): Promise<BigNumber>;
 
     swapExactTokensForETH(
@@ -1149,7 +1056,7 @@ export interface IPancakeRouter02 extends BaseContract {
       path: string[],
       to: string,
       deadline: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & {from?: string | Promise<string>}
     ): Promise<BigNumber>;
 
     swapExactTokensForETHSupportingFeeOnTransferTokens(
@@ -1158,7 +1065,7 @@ export interface IPancakeRouter02 extends BaseContract {
       path: string[],
       to: string,
       deadline: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & {from?: string | Promise<string>}
     ): Promise<BigNumber>;
 
     swapExactTokensForTokens(
@@ -1167,7 +1074,7 @@ export interface IPancakeRouter02 extends BaseContract {
       path: string[],
       to: string,
       deadline: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & {from?: string | Promise<string>}
     ): Promise<BigNumber>;
 
     swapExactTokensForTokensSupportingFeeOnTransferTokens(
@@ -1176,7 +1083,7 @@ export interface IPancakeRouter02 extends BaseContract {
       path: string[],
       to: string,
       deadline: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & {from?: string | Promise<string>}
     ): Promise<BigNumber>;
 
     swapTokensForExactETH(
@@ -1185,7 +1092,7 @@ export interface IPancakeRouter02 extends BaseContract {
       path: string[],
       to: string,
       deadline: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & {from?: string | Promise<string>}
     ): Promise<BigNumber>;
 
     swapTokensForExactTokens(
@@ -1194,7 +1101,7 @@ export interface IPancakeRouter02 extends BaseContract {
       path: string[],
       to: string,
       deadline: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & {from?: string | Promise<string>}
     ): Promise<BigNumber>;
   };
 
@@ -1210,7 +1117,7 @@ export interface IPancakeRouter02 extends BaseContract {
       amountBMin: BigNumberish,
       to: string,
       deadline: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & {from?: string | Promise<string>}
     ): Promise<PopulatedTransaction>;
 
     addLiquidityETH(
@@ -1220,7 +1127,7 @@ export interface IPancakeRouter02 extends BaseContract {
       amountETHMin: BigNumberish,
       to: string,
       deadline: BigNumberish,
-      overrides?: PayableOverrides & { from?: string | Promise<string> }
+      overrides?: PayableOverrides & {from?: string | Promise<string>}
     ): Promise<PopulatedTransaction>;
 
     factory(overrides?: CallOverrides): Promise<PopulatedTransaction>;
@@ -1266,7 +1173,7 @@ export interface IPancakeRouter02 extends BaseContract {
       amountBMin: BigNumberish,
       to: string,
       deadline: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & {from?: string | Promise<string>}
     ): Promise<PopulatedTransaction>;
 
     removeLiquidityETH(
@@ -1276,7 +1183,7 @@ export interface IPancakeRouter02 extends BaseContract {
       amountETHMin: BigNumberish,
       to: string,
       deadline: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & {from?: string | Promise<string>}
     ): Promise<PopulatedTransaction>;
 
     removeLiquidityETHSupportingFeeOnTransferTokens(
@@ -1286,7 +1193,7 @@ export interface IPancakeRouter02 extends BaseContract {
       amountETHMin: BigNumberish,
       to: string,
       deadline: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & {from?: string | Promise<string>}
     ): Promise<PopulatedTransaction>;
 
     removeLiquidityETHWithPermit(
@@ -1300,7 +1207,7 @@ export interface IPancakeRouter02 extends BaseContract {
       v: BigNumberish,
       r: BytesLike,
       s: BytesLike,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & {from?: string | Promise<string>}
     ): Promise<PopulatedTransaction>;
 
     removeLiquidityETHWithPermitSupportingFeeOnTransferTokens(
@@ -1314,7 +1221,7 @@ export interface IPancakeRouter02 extends BaseContract {
       v: BigNumberish,
       r: BytesLike,
       s: BytesLike,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & {from?: string | Promise<string>}
     ): Promise<PopulatedTransaction>;
 
     removeLiquidityWithPermit(
@@ -1329,7 +1236,7 @@ export interface IPancakeRouter02 extends BaseContract {
       v: BigNumberish,
       r: BytesLike,
       s: BytesLike,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & {from?: string | Promise<string>}
     ): Promise<PopulatedTransaction>;
 
     swapETHForExactTokens(
@@ -1337,7 +1244,7 @@ export interface IPancakeRouter02 extends BaseContract {
       path: string[],
       to: string,
       deadline: BigNumberish,
-      overrides?: PayableOverrides & { from?: string | Promise<string> }
+      overrides?: PayableOverrides & {from?: string | Promise<string>}
     ): Promise<PopulatedTransaction>;
 
     swapExactETHForTokens(
@@ -1345,7 +1252,7 @@ export interface IPancakeRouter02 extends BaseContract {
       path: string[],
       to: string,
       deadline: BigNumberish,
-      overrides?: PayableOverrides & { from?: string | Promise<string> }
+      overrides?: PayableOverrides & {from?: string | Promise<string>}
     ): Promise<PopulatedTransaction>;
 
     swapExactETHForTokensSupportingFeeOnTransferTokens(
@@ -1353,7 +1260,7 @@ export interface IPancakeRouter02 extends BaseContract {
       path: string[],
       to: string,
       deadline: BigNumberish,
-      overrides?: PayableOverrides & { from?: string | Promise<string> }
+      overrides?: PayableOverrides & {from?: string | Promise<string>}
     ): Promise<PopulatedTransaction>;
 
     swapExactTokensForETH(
@@ -1362,7 +1269,7 @@ export interface IPancakeRouter02 extends BaseContract {
       path: string[],
       to: string,
       deadline: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & {from?: string | Promise<string>}
     ): Promise<PopulatedTransaction>;
 
     swapExactTokensForETHSupportingFeeOnTransferTokens(
@@ -1371,7 +1278,7 @@ export interface IPancakeRouter02 extends BaseContract {
       path: string[],
       to: string,
       deadline: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & {from?: string | Promise<string>}
     ): Promise<PopulatedTransaction>;
 
     swapExactTokensForTokens(
@@ -1380,7 +1287,7 @@ export interface IPancakeRouter02 extends BaseContract {
       path: string[],
       to: string,
       deadline: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & {from?: string | Promise<string>}
     ): Promise<PopulatedTransaction>;
 
     swapExactTokensForTokensSupportingFeeOnTransferTokens(
@@ -1389,7 +1296,7 @@ export interface IPancakeRouter02 extends BaseContract {
       path: string[],
       to: string,
       deadline: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & {from?: string | Promise<string>}
     ): Promise<PopulatedTransaction>;
 
     swapTokensForExactETH(
@@ -1398,7 +1305,7 @@ export interface IPancakeRouter02 extends BaseContract {
       path: string[],
       to: string,
       deadline: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & {from?: string | Promise<string>}
     ): Promise<PopulatedTransaction>;
 
     swapTokensForExactTokens(
@@ -1407,7 +1314,7 @@ export interface IPancakeRouter02 extends BaseContract {
       path: string[],
       to: string,
       deadline: BigNumberish,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: Overrides & {from?: string | Promise<string>}
     ): Promise<PopulatedTransaction>;
   };
 }

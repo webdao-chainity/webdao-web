@@ -1,9 +1,9 @@
-import {createContext} from "react";
+import {createContext} from 'react';
 
 export interface IThemeContext {
-    themeName: string;
-    themeData: object;
-    setTheme: (arg0: string) => void
+  themeName: string;
+  themeData: object;
+  setTheme: (arg0: string) => void;
 }
 
-export const ThemeContext = createContext<IThemeContext | undefined>(undefined)
+export const ThemeContext = createContext<IThemeContext | undefined>(undefined);

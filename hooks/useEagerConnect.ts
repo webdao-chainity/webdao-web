@@ -1,26 +1,26 @@
-import { useEffect } from 'react'
-import useAuth from '@/hooks/useAuth'
-import { connectorLocalStorageKey, injected } from '@/engine/config'
-import { ConnectorNames } from '@/engine/types'
-import { useWeb3React } from '@web3-react/core'
+import {useEffect} from 'react';
+import useAuth from '@/hooks/useAuth';
+import {connectorLocalStorageKey, injected} from '@/engine/config';
+import {ConnectorNames} from '@/engine/types';
+import {useWeb3React} from '@web3-react/core';
 
 const _binanceChainListener = async () =>
   new Promise<void>((resolve) =>
     Object.defineProperty(window, 'BinanceChain', {
       get() {
-        return this.bsc
+        return this.bsc;
       },
       set(bsc) {
-        this.bsc = bsc
+        this.bsc = bsc;
 
-        resolve()
+        resolve();
       },
-    }),
-  )
+    })
+  );
 
 const useEagerConnect = () => {
-  const { login } = useAuth()
-  const { account, connector } = useWeb3React()
+  const {login} = useAuth();
+  const {account, connector} = useWeb3React();
 
   useEffect(() => {
     if (account && connector) {
@@ -70,39 +70,37 @@ const useEagerConnect = () => {
         //     }).catch(() => {})
         //   }
         // }
-      })
+      });
     }
-  }, [account, connector])
+  }, [account, connector]);
 
   useEffect(() => {
     const tryLogin = (c: ConnectorNames) => {
-      setTimeout(() => login(c))
-    }
+      setTimeout(() => login(c));
+    };
 
     const connectorId =
       typeof window?.localStorage?.getItem === 'function' &&
-      (window?.localStorage?.getItem(connectorLocalStorageKey) as ConnectorNames)
+      (window?.localStorage?.getItem(connectorLocalStorageKey) as ConnectorNames);
 
     if (connectorId) {
-      const isConnectorBinanceChain = connectorId === ConnectorNames.BSC
-      const isBinanceChainDefined = Reflect.has(window, 'BinanceChain')
+      const isConnectorBinanceChain = connectorId === ConnectorNames.BSC;
+      const isBinanceChainDefined = Reflect.has(window, 'BinanceChain');
 
       // Currently BSC extension doesn't always inject in time.
       // We must check to see if it exists, and if not, wait for it before proceeding.
       if (isConnectorBinanceChain && !isBinanceChainDefined) {
-        _binanceChainListener().then(() => login(connectorId))
+        _binanceChainListener().then(() => login(connectorId));
 
-        return
+        return;
       }
       if (connectorId === ConnectorNames.Injected) {
         // somehow injected login not working well on development mode
         injected.isAuthorized().then(async () => {
-          await tryLogin(connectorId)
-
-
-        })
+          await tryLogin(connectorId);
+        });
       } else {
-        tryLogin(connectorId)
+        tryLogin(connectorId);
       }
     } else {
       // Tự động connect lại khi người dùng bấm Disconnect và Refresh lại trang
@@ -117,7 +115,7 @@ const useEagerConnect = () => {
       //   }
       // })
     }
-  }, [login])
-}
+  }, [login]);
+};
 
-export default useEagerConnect
+export default useEagerConnect;

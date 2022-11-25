@@ -1,41 +1,53 @@
-import React from 'react'
-import styled, {css, withTheme} from "styled-components";
-import {CURSOR, FLEX_CENTER} from "@/constants";
-import Icon from "./Icon";
+import React from 'react';
+import styled, {css, withTheme} from 'styled-components';
+import {CURSOR, FLEX_CENTER} from '@/constants';
+import Icon from './Icon';
 
 export enum ButtonType {
-    primary = 'primary',
-    secondary = 'secondary',
-    yes = 'yes',
-    no = 'no'
+  primary = 'primary',
+  secondary = 'secondary',
+  yes = 'yes',
+  no = 'no',
 }
 
 interface IButton {
-    name?: string;
-    icon?: string;
-    className: string;
-    type: ButtonType;
-    onClick?: () => void;
-    disabled?: boolean
+  name?: string;
+  icon?: string;
+  className: string;
+  type: ButtonType;
+  onClick?: () => void;
+  disabled?: boolean;
 }
 
 const ButtonComp = (props: IButton) => {
-    return <div className={props.className} onClick={() => {
-        if (props?.disabled) return
-        if (typeof props?.onClick === 'function')
-            props.onClick()
-    }}>
-        <div
-            className={
-                `button_container ${props.type == ButtonType.primary ? '' : props.type} ${props?.disabled ? 'disabled' : ''}`}
-        >
-            {props?.name ? <div>{props.name}</div> : ''}
-            {props?.icon ? <div className='icon_wrapper'><Icon icon={props.icon}/></div> : ''}
-        </div>
+  return (
+    <div
+      className={props.className}
+      onClick={() => {
+        if (props?.disabled) return;
+        if (typeof props?.onClick === 'function') props.onClick();
+      }}
+    >
+      <div
+        className={`button_container ${props.type == ButtonType.primary ? '' : props.type} ${
+          props?.disabled ? 'disabled' : ''
+        }`}
+      >
+        {props?.name ? <div>{props.name}</div> : ''}
+        {props?.icon ? (
+          <div className="icon_wrapper">
+            <Icon icon={props.icon} />
+          </div>
+        ) : (
+          ''
+        )}
+      </div>
     </div>
-}
+  );
+};
 
-export const Button = withTheme(styled(ButtonComp)(() => {
+export const Button = withTheme(
+  styled(ButtonComp)(() => {
     return css`
       .button_container {
         display: flex;
@@ -47,6 +59,9 @@ export const Button = withTheme(styled(ButtonComp)(() => {
         color: #f95997;
         font-size: 1.6rem;
         flex-direction: row;
+        &:hover {
+          transform: scale(1.1);
+        }
       }
 
       .icon_wrapper {
@@ -59,10 +74,13 @@ export const Button = withTheme(styled(ButtonComp)(() => {
         background-color: gray;
         color: black;
       }
-      
-      .disabled{
-        cursor: none;
+
+      .disabled {
+        cursor: not-allowed;
         opacity: 0.8;
+        &:hover {
+          transform: unset;
+        }
       }
       .yes {
         //background-color: chartreuse;
@@ -78,5 +96,6 @@ export const Button = withTheme(styled(ButtonComp)(() => {
         border: 1px solid #888;
         background-color: transparent;
       }
-    `
-}))
+    `;
+  })
+);

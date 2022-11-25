@@ -1,20 +1,20 @@
-import { useState } from 'react'
+import {useState} from 'react';
 
-import HelpIcon from '@/components/Svg/Icons/Help'
+import HelpIcon from '@/components/Svg/Icons/Help';
 
-export const BAD_SRCS: { [imageSrc: string]: true } = {}
+export const BAD_SRCS: {[imageSrc: string]: true} = {};
 
 export interface LogoProps extends React.ImgHTMLAttributes<HTMLImageElement> {
-  srcs: string[]
+  srcs: string[];
 }
 
 /**
  * Renders an image by sequentially trying a list of URIs, and then eventually a fallback triangle alert
  */
-const Logo: React.FC<LogoProps> = ({ srcs, alt, ...rest }) => {
-  const [, refresh] = useState<number>(0)
+const Logo: React.FC<LogoProps> = ({srcs, alt, ...rest}) => {
+  const [, refresh] = useState<number>(0);
 
-  const src: string | undefined = srcs.find((s) => !BAD_SRCS[s])
+  const src: string | undefined = srcs.find((s) => !BAD_SRCS[s]);
 
   if (src) {
     return (
@@ -23,14 +23,14 @@ const Logo: React.FC<LogoProps> = ({ srcs, alt, ...rest }) => {
         alt={alt || ''}
         src={src}
         onError={() => {
-          if (src) BAD_SRCS[src] = true
-          refresh((i) => i + 1)
+          if (src) BAD_SRCS[src] = true;
+          refresh((i) => i + 1);
         }}
       />
-    )
+    );
   }
 
-  return <HelpIcon {...rest} />
-}
+  return <HelpIcon {...rest} />;
+};
 
-export default Logo
+export default Logo;

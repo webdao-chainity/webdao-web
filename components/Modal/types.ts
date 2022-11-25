@@ -1,4 +1,4 @@
-import { BoxProps } from '@/components/Box'
+import {BoxProps} from '@/components/Box';
 
 export interface ModalTheme {
   background: string;
@@ -17,5 +17,5 @@ export interface ModalProps extends InjectedProps, BoxProps {
   bodyPadding?: string;
   headerBackground?: string;
   minWidth?: string;
-  children?: any
+  children?: any;
 }

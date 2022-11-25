@@ -1,4 +1,4 @@
-import { scales, variants } from './types'
+import {scales, variants} from './types';
 
 export const scaleVariants = {
   [scales.MD]: {
@@ -14,7 +14,7 @@ export const scaleVariants = {
     fontSize: '12px',
     padding: '0 8px',
   },
-}
+};
 
 export const styleVariants = {
   [variants.PRIMARY]: {
@@ -62,12 +62,12 @@ export const styleVariants = {
     backgroundColor: 'white',
     color: 'black',
     boxShadow: 'none',
-    border: '1px solid black'
+    border: '1px solid black',
   },
   [variants.BLACK]: {
     backgroundColor: 'black',
     color: 'white',
     boxShadow: 'none',
-    border: '1px solid white'
+    border: '1px solid white',
   },
-}
+};

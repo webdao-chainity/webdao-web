@@ -1,19 +1,20 @@
-import { AnimatePresence, m, Variants, LazyMotion, domAnimation } from 'framer-motion'
-import React, { createContext, useState, useRef } from 'react'
-import styled, { keyframes } from 'styled-components'
-import { Handler } from './types'
+import {AnimatePresence, m, Variants, LazyMotion, domAnimation} from 'framer-motion';
+import React, {createContext, useState, useRef} from 'react';
+import styled, {keyframes} from 'styled-components';
+import {Handler} from './types';
+
 
 const animationVariants: Variants = {
-  initial: { transform: 'translateX(0px)' },
-  animate: { transform: 'translateX(0px)' },
-  exit: { transform: 'translateX(0px)' },
-}
+  initial: {transform: 'translateX(0px)'},
+  animate: {transform: 'translateX(0px)'},
+  exit: {transform: 'translateX(0px)'},
+};
 
 const animationMap = {
   initial: 'initial',
   animate: 'animate',
   exit: 'exit',
-}
+};
 
 interface ModalsContext {
   isOpen: boolean;
@@ -28,12 +29,12 @@ interface ModalsContext {
 const appearAnimation = keyframes`
   from { opacity:0 }
   to { opacity:1 }
-`
+`;
 
 const disappearAnimation = keyframes`
   from { opacity:1 }
   to { opacity:0 }
-`
+`;
 
 const ModalWrapper = styled(m.div)`
   display: flex;
@@ -54,7 +55,7 @@ const ModalWrapper = styled(m.div)`
   &.disappear {
     animation: ${disappearAnimation} 0.3s ease-in-out forwards;
   }
-`
+`;
 
 export const Context = createContext<ModalsContext>({
   isOpen: false,
@@ -64,27 +65,27 @@ export const Context = createContext<ModalsContext>({
   onPresent: () => null,
   onDismiss: () => null,
   setCloseOnOverlayClick: () => true,
-})
+});
 
-const ModalProvider: React.FC<any> = ({ children }) => {
-  const [isOpen, setIsOpen] = useState(false)
-  const [modalNode, setModalNode] = useState<React.ReactNode>()
-  const [nodeId, setNodeId] = useState('')
+const ModalProvider: React.FC<any> = ({children}) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [modalNode, setModalNode] = useState<React.ReactNode>();
+  const [nodeId, setNodeId] = useState('');
   // noinspection JSUnusedLocalSymbols
-  const [closeOnOverlayClick, setCloseOnOverlayClick] = useState(true)
-  const animationRef = useRef<HTMLDivElement>(null)
+  const [closeOnOverlayClick, setCloseOnOverlayClick] = useState(true);
+  const animationRef = useRef<HTMLDivElement>(null);
 
   const handlePresent = (node: React.ReactNode, newNodeId: string) => {
-    setModalNode(node)
-    setIsOpen(true)
-    setNodeId(newNodeId)
-  }
+    setModalNode(node);
+    setIsOpen(true);
+    setNodeId(newNodeId);
+  };
 
   const handleDismiss = () => {
-    setModalNode(undefined)
-    setIsOpen(false)
-    setNodeId('')
-  }
+    setModalNode(undefined);
+    setIsOpen(false);
+    setNodeId('');
+  };
 
   // const handleOverlayDismiss = () => {
   //   if (closeOnOverlayClick) {
@@ -122,7 +123,7 @@ const ModalProvider: React.FC<any> = ({ children }) => {
               }}
               {...animationMap}
               variants={animationVariants}
-              transition={{ duration: 0.3 }}
+              transition={{duration: 0.3}}
             >
               {/*<Overlay onClick={handleOverlayDismiss} />*/}
               {React.isValidElement(modalNode) &&
@@ -135,7 +136,7 @@ const ModalProvider: React.FC<any> = ({ children }) => {
       </LazyMotion>
       {children}
     </Context.Provider>
-  )
-}
+  );
+};
 
-export default ModalProvider
+export default ModalProvider;

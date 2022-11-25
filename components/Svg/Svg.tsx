@@ -1,6 +1,6 @@
-import styled, { css, keyframes } from 'styled-components'
-import { space } from 'styled-system'
-import { SvgProps } from './types'
+import styled, {css, keyframes} from 'styled-components';
+import {space} from 'styled-system';
+import {SvgProps} from './types';
 // import getThemeValue from '@/utils/getThemeValue'
 
 const rotate = keyframes`
@@ -10,25 +10,25 @@ const rotate = keyframes`
   to {
     transform: rotate(360deg);
   }
-`
+`;
 
 const spinStyle = css`
   animation: ${rotate} 2s linear infinite;
-`
+`;
 
 const Svg = styled.svg<SvgProps>`
   align-self: center; // Safari fix
   fill: black;
   flex-shrink: 0;
-  ${({ spin }) => spin && spinStyle}
+  ${({spin}) => spin && spinStyle}
   ${space}
-`
+`;
 
 Svg.defaultProps = {
   color: 'text',
   width: '20px',
   xmlns: 'http://www.w3.org/2000/svg',
-  spin: false
-}
+  spin: false,
+};
 
-export default Svg
+export default Svg;

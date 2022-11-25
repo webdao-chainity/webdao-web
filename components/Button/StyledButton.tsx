@@ -1,17 +1,17 @@
-import styled, { DefaultTheme } from 'styled-components'
-import { space, layout, variant } from 'styled-system'
-import { scaleVariants, styleVariants } from './theme'
-import { BaseButtonProps } from './types'
+import styled, {DefaultTheme} from 'styled-components';
+import {space, layout, variant} from 'styled-system';
+import {scaleVariants, styleVariants} from './theme';
+import {BaseButtonProps} from './types';
 
 interface ThemedButtonProps extends BaseButtonProps {
-  theme: DefaultTheme
+  theme: DefaultTheme;
 }
 
 interface TransientButtonProps extends ThemedButtonProps {
-  $isLoading?: boolean
+  $isLoading?: boolean;
 }
 
-const getDisabledStyles = ({ $isLoading }: TransientButtonProps) => {
+const getDisabledStyles = ({$isLoading}: TransientButtonProps) => {
   if ($isLoading === true) {
     return `
       &:disabled,
@@ -40,9 +40,9 @@ const getDisabledStyles = ({ $isLoading }: TransientButtonProps) => {
  * @see https://github.com/styled-components/styled-components/issues/135
  */
 
-const getOpacity = ({ $isLoading = false }: TransientButtonProps) => {
+const getOpacity = ({$isLoading = false}: TransientButtonProps) => {
   return $isLoading ? '.5' : '1';
-}
+};
 
 const StyledButton = styled.button<BaseButtonProps>`
   align-items: center;
@@ -62,7 +62,9 @@ const StyledButton = styled.button<BaseButtonProps>`
   outline: 0;
   transition: background-color 0.2s, opacity 0.2s;
 
-  &:hover:not(:disabled):not(.luxworld-button--disabled):not(.luxworld-button--disabled):not(:active) {
+  &:hover:not(:disabled):not(.luxworld-button--disabled):not(.luxworld-button--disabled):not(
+      :active
+    ) {
     opacity: 0.65;
   }
 
@@ -82,6 +84,6 @@ const StyledButton = styled.button<BaseButtonProps>`
   })}
   ${layout}
   ${space}
-`
+`;
 
-export default StyledButton
+export default StyledButton;

@@ -1,8 +1,15 @@
-import React from 'react'
+import React from 'react';
 // import { useTheme } from 'styled-components'
 // import { Heading } from '@/components/Heading'
-import { ModalBody, ModalHeader, ModalTitle, ModalContainer, ModalCloseButton, ModalBackButton } from './styles'
-import { ModalProps } from './types'
+import {
+  ModalBody,
+  ModalHeader,
+  ModalTitle,
+  ModalContainer,
+  ModalCloseButton,
+  ModalBackButton,
+} from './styles';
+import {ModalProps} from './types';
 
 const Modal: React.FC<ModalProps> = ({
   title,
@@ -25,9 +32,9 @@ const Modal: React.FC<ModalProps> = ({
         </ModalTitle>
         {!hideCloseButton && <ModalCloseButton onDismiss={onDismiss} />}
       </ModalHeader>
-      <ModalBody >{children}</ModalBody>
+      <ModalBody>{children}</ModalBody>
     </ModalContainer>
-  )
-}
+  );
+};
 
-export default Modal
+export default Modal;

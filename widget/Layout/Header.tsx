@@ -1,56 +1,63 @@
-import React, {memo} from 'react'
-import styled, {css, withTheme} from "styled-components";
-import {Button, ButtonType} from "components";
+import React, {memo, useContext} from 'react';
+import styled, {css, withTheme} from 'styled-components';
+import {Button, ButtonType} from 'components';
 import {CURSOR, FLEX_ROW_BETWEEN} from '@/constants';
-import _ from "lodash";
-import {ThemeSwitcher} from "./ThemeSwitcher";
-import {useWalletModal} from "@/components/WalletModal";
-import useAuth from "../../hooks/useAuth";
+import _ from 'lodash';
+import {ThemeSwitcher} from './ThemeSwitcher';
+import {useWalletModal} from '@/components/WalletModal';
 import logo from 'public/WebDAO-logo.png';
-import ROUTES from "@/constants/route";
-import {useRouter} from "next/router";
+import ROUTES from '@/constants/route';
+import {useRouter} from 'next/router';
+import {AuthContext} from '../../context/auth';
 
 interface IHeader {
-    className: string;
-    theme: string;
+  className: string;
+  theme: string;
 }
 
 const HeaderComp = (props: IHeader) => {
-    const {login, logout, account} = useAuth();
-    console.log(account)
-    const {onPresentConnectModal} = useWalletModal(login);
-    const router = useRouter();
+  const {login, logout, account} = useContext(AuthContext);
+  const {onPresentConnectModal} = useWalletModal(login);
+  const router = useRouter();
 
-    return <div className={props.className}>
-        <div className="header_container">
-            <div className="left_section">
-                <a className="log_container" href={ROUTES.HOME_PATH}>
-                    <img src={logo.src} alt="logo"/>
-                </a>
-                <div className="site_name">WebDAO</div>
-            </div>
-            <div className="right_section">
-                <ThemeSwitcher/>
-                <Button name='Add event' type={ButtonType.secondary} onClick={() => {
-                    console.log(ROUTES.ADD_EVENT_PATH)
-                    router.push(ROUTES.ADD_EVENT_PATH)
-                }
-                }/>
-                <Button name={account ? 'Disconnect wallet' : 'Connect wallet'} type={ButtonType.primary}
-                        onClick={() => {
-                            if (account) {
-                                logout();
-                                return
-                            }
-                            onPresentConnectModal();
-                        }}/>
-            </div>
+  return (
+    <div className={props.className}>
+      <div className="header_container">
+        <div className="left_section">
+          <a className="log_container" href={ROUTES.HOME_PATH}>
+            <img src={logo.src} alt="logo" />
+          </a>
+          <div className="site_name">WebDAO</div>
         </div>
+        <div className="right_section">
+          <ThemeSwitcher />
+          <Button
+            name="Add event"
+            type={ButtonType.secondary}
+            onClick={() => {
+              console.log(ROUTES.ADD_EVENT_PATH);
+              router.push(ROUTES.ADD_EVENT_PATH);
+            }}
+          />
+          <Button
+            name={account ? 'Disconnect wallet' : 'Connect wallet'}
+            type={ButtonType.primary}
+            onClick={() => {
+              if (account) {
+                logout();
+                return;
+              }
+              onPresentConnectModal();
+            }}
+          />
+        </div>
+      </div>
     </div>
-}
+  );
+};
 
-
-const HeaderStyled = withTheme(styled(HeaderComp)((props: IHeader) => {
+const HeaderStyled = withTheme(
+  styled(HeaderComp)((props: IHeader) => {
     return css`
       .header_container {
         padding: 1rem;
@@ -90,9 +97,9 @@ const HeaderStyled = withTheme(styled(HeaderComp)((props: IHeader) => {
           display: flex;
           column-gap: 1rem;
         }
-
       }
-    `
-}))
+    `;
+  })
+);
 
-export const Header = memo(HeaderStyled)
+export const Header = memo(HeaderStyled);

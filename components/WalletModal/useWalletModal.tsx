@@ -1,15 +1,15 @@
-import React from 'react'
-import { useModal } from '../Modal'
-import ConnectModal from './ConnectModal'
-import { Login } from './types'
+import React from 'react';
+import {useModal} from '../Modal';
+import ConnectModal from './ConnectModal';
+import {Login} from './types';
 
 interface ReturnType {
-  onPresentConnectModal: () => void
+  onPresentConnectModal: () => void;
 }
 
 const useWalletModal = (login: Login): ReturnType => {
-  const [onPresentConnectModal] = useModal(<ConnectModal login={login}/>)
-  return { onPresentConnectModal }
-}
+  const [onPresentConnectModal] = useModal(<ConnectModal login={login} />);
+  return {onPresentConnectModal};
+};
 
-export default useWalletModal
+export default useWalletModal;

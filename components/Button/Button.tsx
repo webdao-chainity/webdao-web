@@ -1,21 +1,21 @@
-import React, { cloneElement, ElementType, isValidElement } from 'react'
-import StyledButton from './StyledButton'
-import { ButtonProps, scales, variants } from './types'
+import React, {cloneElement, ElementType, isValidElement} from 'react';
+import StyledButton from './StyledButton';
+import {ButtonProps, scales, variants} from './types';
 // import getExternalLinkProps from '@/utils/getExternalLinkProps'
-import clsx from 'clsx'
+import clsx from 'clsx';
 
 const Button = <E extends ElementType = 'button'>(props: ButtonProps<E>): JSX.Element => {
-  const { startIcon, endIcon, external, className, isLoading, disabled, children, ...rest } = props
+  const {startIcon, endIcon, external, className, isLoading, disabled, children, ...rest} = props;
   // const internalProps = external ? getExternalLinkProps() : {}
-  const isDisabled = isLoading || disabled
-  const classNames = className ? [className] : []
+  const isDisabled = isLoading || disabled;
+  const classNames = className ? [className] : [];
 
   if (isLoading) {
-    classNames.push('luxworld-button--loading')
+    classNames.push('luxworld-button--loading');
   }
 
   if (isDisabled && !isLoading) {
-    classNames.push('luxworld-button--disabled')
+    classNames.push('luxworld-button--disabled');
   }
 
   return (
@@ -37,8 +37,8 @@ const Button = <E extends ElementType = 'button'>(props: ButtonProps<E>): JSX.El
           } as any)}
       </>
     </StyledButton>
-  )
-}
+  );
+};
 
 Button.defaultProps = {
   isLoading: false,
@@ -46,6 +46,6 @@ Button.defaultProps = {
   variant: variants.PRIMARY,
   scale: scales.MD,
   disabled: false,
-}
+};
 
-export default Button
+export default Button;

@@ -1,6 +1,6 @@
-import styled from 'styled-components'
-import Text from '../Text/Text'
-import { tags, HeadingProps } from './types'
+import styled from 'styled-components';
+import Text from '../Text/Text';
+import {tags, HeadingProps} from './types';
 
 // const style = {
 //   [scales.MD]: {
@@ -21,15 +21,14 @@ import { tags, HeadingProps } from './types'
 //   },
 // }
 
-const Heading = styled(Text).attrs({ bold: true })<HeadingProps>`
+const Heading = styled(Text).attrs({bold: true})<HeadingProps>`
   font-size: 30px;
   font-weight: 600;
   line-height: 1.1;
-  
-`
+`;
 
 Heading.defaultProps = {
   as: tags.H2,
-}
+};
 
-export default Heading
+export default Heading;
