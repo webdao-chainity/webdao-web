@@ -1,0 +1,56 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "incremental": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution":"node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "baseUrl": ".",
+    "paths": {
+      "@/constants/*": ["constants/*"],
+      "@/constants": ["constants"],
+      "@/components/*": ["components/*"],
+      "@/components": ["components"],
+      "@/widget/*": ["widget/*"],
+      "@/widget": ["widget"],
+      "@/hook/*": ["hook/*"],
+      "@/hook": ["hook"],
+      "@/themes/*": ["themes/*"],
+      "@/themes": ["themes"],
+      "@/engine/*": ["engine/*"],
+      "@/engine": ["engine"],
+      "@/contexts/*": ["contexts/*"],
+      "@/contexts": ["contexts"],
+      "@/helpers/*": ["helpers/*"],
+      "@/helpers": ["helpers"],
+      "@/utils": ["utils"],
+      "@/utils/*": ["utils/*"]
+    },
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules"
+  ],
+}
