@@ -11,7 +11,7 @@ import {Web3ReactProvider} from '@web3-react/core';
 import {getLibrary} from '@/engine/config';
 import useEagerConnect from '@/hooks/useEagerConnect';
 import {AuthProvider} from '@/context/auth';
-import useToast from '@/hooks/useToast';
+import {ToastProvider} from '@/context/toast';
 
 interface ILayout {
   className: string;
@@ -63,27 +63,29 @@ const LayoutBody = withTheme(
 
 export const Layout = (props: {children: ReactNode}) => {
   const {themeName, themeData, setTheme} = useTheme();
-  const {toasterComponent} = useToast();
 
   return (
     <div>
       <Web3ReactProvider getLibrary={getLibrary}>
         <ThemeContext.Provider value={{themeName, themeData, setTheme}}>
           <AuthProvider>
-            <ModalProvider>
-              <ThemeProvider theme={themeData}>
-                <GlobalStyle />
-                <LayoutBody>
-                  <GlobalHooks />
-                  {props.children}
-                  {toasterComponent}
-                </LayoutBody>
-                <NextProgressBar />
-              </ThemeProvider>
-            </ModalProvider>
+            <ToastProvider>
+              <ModalProvider>
+                <ThemeProvider theme={themeData}>
+                  <GlobalStyle />
+                  <LayoutBody>
+                    <GlobalHooks />
+                    {props.children}
+                  </LayoutBody>
+                  <NextProgressBar />
+                </ThemeProvider>
+              </ModalProvider>
+            </ToastProvider>
           </AuthProvider>
         </ThemeContext.Provider>
       </Web3ReactProvider>
     </div>
   );
 };
+
+export default Layout;

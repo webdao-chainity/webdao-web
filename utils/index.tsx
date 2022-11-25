@@ -28,7 +28,22 @@ export const parseIntValue = (value: string | null) => {
     if (value == null) return null;
     return parseInt(value);
   } catch (e) {
-    console.log(e);
+    console.log('parseIntValue', e);
     return null;
   }
+};
+
+export const parseNumberEtherData = (data: any) => {
+  try {
+    return data.toNumber();
+  } catch (e) {
+    console.log('parseNumberEtherData', e);
+    return data;
+  }
+};
+export const parseEtherDataList = (dataList: any) => {
+  return dataList.map((el: any) => {
+    if (typeof el === 'object') return parseNumberEtherData(el);
+    return el;
+  });
 };

@@ -13,9 +13,11 @@ import {
 
 import {connectorLocalStorageKey, connectorsByName} from '@/engine/config';
 import {ConnectorNames} from '@/engine/types';
+import useToast from '@/hooks/useToast';
 
 const useAuth = () => {
   const {chainId, activate, deactivate, setError, account} = useWeb3React();
+  const {toastError} = useToast();
 
   const login = useCallback(
     async (connectorID: ConnectorNames) => {
@@ -35,6 +37,7 @@ const useAuth = () => {
             window?.localStorage?.removeItem(connectorLocalStorageKey);
             if (error instanceof NoEthereumProviderError || error instanceof NoBscProviderError) {
               console.log('Provider Error: No provider was found');
+              toastError('Provider Error: No provider was found');
             } else if (
               error instanceof UserRejectedRequestErrorInjected ||
               error instanceof UserRejectedRequestErrorWalletConnect
@@ -44,6 +47,7 @@ const useAuth = () => {
                 walletConnector.walletConnectProvider = undefined;
               }
               console.log('Authorization Error, Please authorize to access your account');
+              toastError('Authorization Error, Please authorize to access your account');
             } else {
               console.log(error.message);
             }

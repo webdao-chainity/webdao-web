@@ -1,48 +1,43 @@
-import styles from './style.module.scss';
+import styles from 'pages/events/style.module.scss';
 import React, {useContext} from 'react';
-import Head from 'next/head';
-import {Layout} from '@/widget/Layout';
 import {Button, ButtonType} from '@/components';
-import favicon from 'public/favicon.ico';
 import dayjs from 'dayjs';
 import _ from 'lodash';
 import {DAY_FORMAT_DMY} from '@/constants';
-import {dehydrate, QueryClient, useQuery} from 'react-query';
-import {getEventsListApi} from '@/helpers/api';
-import {NextPage} from 'next';
 import useVoteContract, {VOTE_VALUE_ENUM} from '@/hooks/useVoteContract';
 import {AuthContext} from '@/context/auth';
-import useToast from '@/hooks/useToast';
 import {parseIntValue} from '@/utils';
+import {ToastContext} from '@/context/toast';
 
-const LaunchPadBody = (props: any) => {
-  const {toastError} = useToast();
+interface ILaunchPadBody {
+  slug: string;
+  dataEvents: any;
+}
+
+const LaunchPadBody = (props: ILaunchPadBody) => {
+  const {toastError} = useContext(ToastContext);
   const {account} = useContext(AuthContext);
   const {data, handleVote, hasVoted, handleCancelVote, isFinished, lastVoted} = useVoteContract(
-    parseIntValue(props.query.id),
+    parseIntValue(props.slug),
     account
   );
 
-  const {data: dataEvents} = useQuery('getEventsListApi', () => getEventsListApi(), {
-    keepPreviousData: true,
-  });
-
-  const dataDb = Array.isArray(dataEvents)
-    ? dataEvents.filter((el: object) => _.get(el, '_id') === _.get(props, 'query.id')).pop()
+  const dataDb = Array.isArray(props.dataEvents)
+    ? props.dataEvents.filter((el: object) => _.get(el, '_id') === _.get(props, 'slug')).pop()
     : {};
 
   const renderItem = (el: string, key: number) => {
     let value = _.get(data, el);
-    if (['Name', 'Description'].includes(el)) return '';
+    if (['Name', 'Description'].includes(el)) return null;
     if (['Start time', 'End time'].includes(el)) {
       value = parseIntValue(value);
-      if (value == null) return;
+      if (value == null) return null;
       const day = dayjs(value);
-      if (!day.isValid()) return;
+      if (!day.isValid()) return null;
       value = day.format(DAY_FORMAT_DMY);
     }
     if (el === 'Vote result') {
-      if (value == 2) return;
+      if (value == 2) return null;
       value = value == 1 ? 'Yes' : 'No';
     }
     if (el === 'Is finished') {
@@ -115,7 +110,7 @@ const LaunchPadBody = (props: any) => {
           <div className={styles.body}>
             {hasVoted && (
               <div className={styles.description}>
-                Your last vote: {lastVoted === VOTE_VALUE_ENUM.YES ? 'Yes' : 'No'}
+                Your last vote: {lastVoted == VOTE_VALUE_ENUM.YES ? 'Yes' : 'No'}
               </div>
             )}
             {/*<div className={styles.email_input}>*/}
@@ -155,33 +150,4 @@ const LaunchPadBody = (props: any) => {
   );
 };
 
-const Launchpad: NextPage = (props: any) => {
-  return (
-    <div className={styles.launchpad_container}>
-      <Head>
-        <title>Web dao</title>
-        <meta name="description" content="Web dao" />
-        <link rel="icon" href={favicon.src} />
-      </Head>
-      <Layout>
-        <LaunchPadBody {...props} />
-      </Layout>
-    </div>
-  );
-};
-
-export const getServerSideProps = async (ctx: any) => {
-  const {query} = ctx;
-  const queryClient = new QueryClient();
-
-  await queryClient.prefetchQuery('getEventsListApi', () => getEventsListApi());
-
-  return {
-    props: {
-      query,
-      dehydratedState: dehydrate(queryClient),
-    },
-  };
-};
-
-export default Launchpad;
+export default LaunchPadBody;

@@ -1,9 +1,9 @@
 import _ from 'lodash';
-import Web3 from 'web3';
-import {VOTE_CONTRACT_ABI, VOTE_CONTRACT_ADDRESS} from '@/constants/env';
-import {useState, useEffect} from 'react';
+import {VOTE_CONTRACT_ADDRESS} from '@/constants/env';
+import React, {useState, useEffect, useContext} from 'react';
 import {useVoting} from '@/hooks/useContract';
-import useToast from '@/hooks/useToast';
+import {ToastContext} from '@/context/toast';
+import {parseEtherDataList, parseNumberEtherData} from '@/utils';
 
 export const VOTE_VALUE_ENUM = {
   YES: '1',
@@ -13,9 +13,6 @@ export const VOTE_VALUE_ENUM = {
 const IS_PRIVATE = false;
 
 const useVoteContract = (voteId: number | null, account: string | null | undefined) => {
-  console.log(voteId);
-  const {toastError, toastSuccess} = useToast();
-  const contract = useVoting(VOTE_CONTRACT_ADDRESS);
   const [data, setData] = useState({});
   const [hasVoted, setHasVoted] = useState<boolean | null>(false);
   const [lastVoted, setLastVoted] = useState<string | null>(VOTE_VALUE_ENUM.NO);
@@ -23,26 +20,28 @@ const useVoteContract = (voteId: number | null, account: string | null | undefin
   const connectContract = async () => {
     try {
       const ethereum = _.get(window, 'ethereum');
-      if (!ethereum) return {data: {}, contract: null};
-      const providerToRead = new Web3(Web3.givenProvider);
+      if (!ethereum) return;
+      // const providerToRead = new Web3(ethereum);
+      // Contract.setProvider(ethereum)
+
+      // let eth = providerToRead?.eth;
       // @ts-ignore
-      let contractToRead = new providerToRead.eth.Contract(
-        VOTE_CONTRACT_ABI,
-        VOTE_CONTRACT_ADDRESS
-      );
-      const dataToUse = await contractToRead.methods.viewVotingById(voteId, IS_PRIVATE).call();
+      // let contractToRead = new Contract(VOTE_CONTRACT_ABI, VOTE_CONTRACT_ADDRESS);
+      // contractToRead.setProvider(ethereum)
+      // const dataToUse = await contractToRead.methods.viewVotingById(voteId, IS_PRIVATE).call();
+      const dataToUse = await contract.viewVotingById(voteId, IS_PRIVATE);
       if (account) {
-        const dataVotedToUse = await contractToRead.methods.voterIdVoting(voteId, account).call();
+        // const dataVotedToUse = await contractToRead.methods.voterIdVoting(voteId, account).call();
+        const dataVotedToUse = await contract.voterIdVoting(voteId, account);
         setHasVoted(_.get(dataVotedToUse, 'isVoted', false));
-        setLastVoted(_.get(dataVotedToUse, 'answerVote', false));
+        setLastVoted(parseNumberEtherData(_.get(dataVotedToUse, 'answerVote', false)));
       } else {
         setHasVoted(null);
         setLastVoted(null);
       }
-      setData(convertData(dataToUse));
-      console.log(dataToUse);
+      setData(convertData(parseEtherDataList(dataToUse)));
     } catch (e) {
-      console.log(e);
+      console.log('connectContract', e);
     }
   };
 
@@ -70,14 +69,15 @@ const useVoteContract = (voteId: number | null, account: string | null | undefin
     return mappedData;
   };
 
-  const handleVote = async (value: string) => {
+  const handleVote = async (value: string | number) => {
     if (!contract) return false;
     try {
+      // @ts-ignore
       await contract.votingFunction(voteId, IS_PRIVATE, value);
       toastSuccess('Request vote success. Waiting for update');
       return true;
     } catch (e) {
-      console.log(e);
+      console.log('handleVote', e);
       toastError('Vote failed');
       return false;
     }
@@ -86,19 +86,23 @@ const useVoteContract = (voteId: number | null, account: string | null | undefin
   const handleCancelVote = async () => {
     if (!contract) return false;
     try {
+      // @ts-ignore
       await contract.voterCancelVoting(voteId, IS_PRIVATE, lastVoted);
       toastSuccess('Request revoke vote success. Waiting for update');
       return true;
     } catch (e) {
-      console.log(e);
+      console.log('handleCancelVote', e);
       toastError('Revoke vote failed');
       return false;
     }
   };
 
+  const {toastError, toastSuccess} = useContext(ToastContext);
+  const contract = useVoting(VOTE_CONTRACT_ADDRESS);
+
   useEffect(() => {
     if (voteId) connectContract();
-  }, [voteId, account]);
+  }, [voteId, account, contract]);
 
   const handleCreateVoting = (value: any) => {
     const {description, currency, minVoter, maxVoter, startTime, endTime} = value;
@@ -114,13 +118,8 @@ const useVoteContract = (voteId: number | null, account: string | null | undefin
     );
   };
 
-  useEffect(() => {
-    connectContract();
-  }, [voteId, account]);
-
   return {
     data,
-    contract,
     hasVoted,
     handleVote,
     handleCancelVote,

@@ -14,11 +14,12 @@ export const THEME_DATA = {
 };
 
 export const getTheme = (themeName: string | null | undefined) => {
-  let themeNameConverted = themeName;
+  let themeNameConverted: any = themeName;
   if (!isValidThemeName(themeName)) themeNameConverted = THEMES_NAME.LIGHT;
   return THEME_DATA[themeNameConverted];
 };
 
 export const isValidThemeName = (themeName: string | null | undefined) => {
+  if (themeName == null) return;
   return Object.values(THEMES_NAME).includes(themeName);
 };

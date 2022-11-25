@@ -67,7 +67,7 @@ export const ItemCard = (props: IItemCard) => {
           router.push({
             pathname: ROUTES.LAUNCHPAD_PATH_DETAIL,
             query: {
-              id: _.get(props, 'data._id'),
+              slug: _.get(props, 'data._id'),
             },
           });
         }}

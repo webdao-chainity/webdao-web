@@ -3,7 +3,7 @@ const path = require('path');
 
 const nextConfig = {
   swcMinify: true,
-  reactStrictMode: false,
+  reactStrictMode: true,
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
   },
